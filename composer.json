@@ -1,0 +1,31 @@
+{
+    "name": "fernandozueet/laravel-doctrine-repository",
+    "type": "library",
+    "description": "Complete repository model with laravel doctrine",
+    "keywords": ["laravel", "laravel doctrine", "doctrine", "crud", "doctrine repository", "repository"],
+    "license": "MIT",
+    "authors": [{
+        "name": "Fernando Zueet",
+        "email": "fernandozueet@hotmail.com",
+        "homepage": "https://github.com/FernandoZueet"
+    }],
+    "require": {
+        "php": ">=7.2.0",
+        "laravel-doctrine/orm": "1.4.*",
+        "beberlei/DoctrineExtensions": "^1.1",
+        "symfony/property-access": "^4.1",
+        "symfony/serializer": "^4.1",
+        "syslogic/doctrine-json-functions": "~2.0"
+    },
+    "require-dev": {
+        "phpunit/phpunit": "5.5.*",
+        "phpunit/dbunit": ">=1.2",
+        "phpunit/phpunit-selenium": ">=1.2"
+    },
+    "autoload": {
+        "psr-4": {
+            "Ldr\\": "src/",
+            "Tests\\": ""
+        }
+    }
+}

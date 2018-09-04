@@ -1,0 +1,9 @@
+    
+    /**
+     * {{doc}}
+     */
+    private function {{joinName}}()
+    {
+        $this->innerJoin("{{field}}", '{{alias}}');
+    }
+    
