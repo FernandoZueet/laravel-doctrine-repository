@@ -547,7 +547,7 @@ abstract class DoctrineBaseRepository
     {
         $set = true;
         $fk = false;
-
+        $fk2 = false;
         if ($createdAt) {
             $setcreatedAt = ucfirst($this->configLdr['createdAtFieldName']);
             $setcreatedAt = "set$setcreatedAt";
@@ -561,7 +561,18 @@ abstract class DoctrineBaseRepository
         foreach ($rule as $key => $value) {
             $exp = explode('|', $value);
             $fkP = explode(':', $exp[0]);
+
             $field = $exp[0];
+
+            //foreign key
+            if (isset($fkP[1])) {
+                $fkPExp = explode('=', $fkP[1]);
+                $fk2 = true;
+                $field = $fkP[0];
+                if (array_search(ucfirst($fkPExp[1]), $this->fkNames) === false) {
+                    throw new \Exception('Incorrect foreign key name');
+                }
+            }
 
             //foreign key
             if (count($fkP) == 2 && $fkP[1] == 'fk') {
@@ -575,7 +586,6 @@ abstract class DoctrineBaseRepository
             //mount method set
             $nameSet = ucfirst($field);
             $nameSet = "set{$nameSet}";
-
             if (isset($params[$field])) {
                 $set = true;
             } else {
@@ -588,8 +598,12 @@ abstract class DoctrineBaseRepository
                 if ($fk) {
                     $value = $this->getReference($this->ent->{ucfirst($fkP[0])}, $value);
                 }
+                if ($fk2) {
+                    $value = $this->getReference($this->ent->{ucfirst($fkPExp[1])}, $value);
+                }
                 $entity->{$nameSet}($value);
                 $fk = false;
+                $fk2 = false;
             }
         }
 

@@ -48,6 +48,7 @@ use LaravelDoctrine\ORM\Configuration\MetaData\MetaDataManager;
 use LaravelDoctrine\ORM\Console\EnsureProductionSettingsCommand;
 use LaravelDoctrine\ORM\Configuration\Connections\ConnectionManager;
 use Ldr\Console\MakeDoctrineRepositoryCommand;
+use Ldr\Console\CreateEntitiesCommand;
 
 class DoctrineRepositoryServiceProvider extends ServiceProvider
 {
@@ -372,6 +373,7 @@ class DoctrineRepositoryServiceProvider extends ServiceProvider
             ConvertMappingCommand::class,
             DumpDatabaseCommand::class,
             MakeDoctrineRepositoryCommand::class,
+            CreateEntitiesCommand::class,
         ]);
     }
 

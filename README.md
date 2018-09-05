@@ -78,16 +78,8 @@ php artisan vendor:publish --tag="configRepository"
 3- Generate the entities 
 
 
-Step 1:
-
 ```bash
-php artisan doctrine:convert:mapping --force --from-database annotation app/Entities
-```
-
-Step 2:
-
-```bash
-php artisan doctrine:generate:entities --generate-annotations --generate-methods --update-entities app/Entities
+php artisan make:doctrine-repository:entities
 ```
 
 4- Generate repository file.  
@@ -179,7 +171,7 @@ class UserDocRepository extends DoctrineBaseRepository implements UserRepository
     {
         return $this->setCreateArray([
             'fieldTest1',
-            'fieldTest2:fk', //foreign key
+            'fieldTest2:fk=classNameFk', //foreign key
         ], $params);
     }
 
@@ -196,7 +188,7 @@ class UserDocRepository extends DoctrineBaseRepository implements UserRepository
     {
         return $this->setUpdateArray([
             'fieldTest1',
-            'fieldTest2:fk', //foreign key
+            'fieldTest2:fk=classNameFk', //foreign key
         ], $params, $id);
     }
 
@@ -651,7 +643,7 @@ public function create(array $params): object
     return $this->setCreateArray([
         'firstName',
         'lastName',
-        'userGenre:fk', //foreign key
+        'userGenre:fk=UserGenre', //foreign key
     ], $params);
 }
 ```
@@ -672,7 +664,7 @@ public function create(array $params): object
     return $this->setCreateArray([
         'firstName',
         'lastName',
-        'userGenre:fk', //foreign key
+        'userGenre:fk=UserGenre', //foreign key
     ], $params, false);
 }
 ```
@@ -694,14 +686,14 @@ public function create(array $params): object
     return $this->setCreateArray([
         'firstName',
         'lastName',
-        'userGenre:fk', //foreign key
+        'userGenre:fk=UserGenre', //foreign key
     ], $params, true, 'included', ['firstName','lastName']);
 
     //Ex 2: The return object will not return the firstName and lastName fields
     return $this->setCreateArray([
         'firstName',
         'lastName',
-        'userGenre:fk', //foreign key
+        'userGenre:fk=UserGenre', //foreign key
     ], $params, true, 'excluded', ['firstName','lastName']);
 }
 ```
@@ -756,7 +748,7 @@ public function update(array $params, int $id): object
     return $this->setUpdateArray([
         'firstName',
         'lastName',
-        'userGenre:fk', //foreign key
+        'userGenre:fk=UserGenre', //foreign key
     ], $params, $id);
 }
 ```
@@ -778,7 +770,7 @@ public function update(array $params, int $id): object
     return $this->setUpdateArray([
         'firstName',
         'lastName',
-        'userGenre:fk', //foreign key
+        'userGenre:fk=UserGenre', //foreign key
     ], $params, $id, false);
 }
 ```
@@ -801,14 +793,14 @@ public function update(array $params, int $id): object
     return $this->setUpdateArray([
         'firstName',
         'lastName',
-        'userGenre:fk', //foreign key
+        'userGenre:fk=UserGenre', //foreign key
     ], $params, $id, true, 'included', ['firstName','lastName']);
 
     //Ex 2: The return object will not return the firstName and lastName fields
     return $this->setUpdateArray([
         'firstName',
         'lastName',
-        'userGenre:fk', //foreign key
+        'userGenre:fk=UserGenre', //foreign key
     ], $params, $id, true, 'excluded', ['firstName','lastName']);
 }
 ```

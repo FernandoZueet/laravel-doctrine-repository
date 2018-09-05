@@ -59,7 +59,7 @@ class {{nameclass}} extends DoctrineBaseRepository {{interface}}
     {
         return $this->setCreateArray([
             'fieldTest1',
-            'fieldTest2:fk', //foreign key
+            'fieldTest2:fk=classNameFk', //foreign key
         ], $params);
     }
 
@@ -76,7 +76,7 @@ class {{nameclass}} extends DoctrineBaseRepository {{interface}}
     {
         return $this->setUpdateArray([
             'fieldTest1',
-            'fieldTest2:fk', //foreign key
+            'fieldTest2:fk=classNameFk', //foreign key
         ], $params, $id);
     }
 
