@@ -57,6 +57,7 @@ class {{nameclass}} extends DoctrineBaseRepository {{interface}}
      */
     public function create(array $params): object
     {
+        //$this->setReturn('doctrine'); //optional - default: array
         return $this->setCreateArray([
             'fieldTest1',
             'fieldTest2:fk=classNameFk', //foreign key
@@ -74,6 +75,7 @@ class {{nameclass}} extends DoctrineBaseRepository {{interface}}
      */
     public function update(array $params, int $id): object
     {
+        //$this->setReturn('doctrine'); //optional - default: array
         return $this->setUpdateArray([
             'fieldTest1',
             'fieldTest2:fk=classNameFk', //foreign key
@@ -121,6 +123,8 @@ class {{nameclass}} extends DoctrineBaseRepository {{interface}}
         //set hidration (optional) - more information see the documentation.
         //$this->addHydrateObject(); 
         //$this->addCustomHydrationMode('ObjectAndScalarHydrator');
+
+        //$this->setReturn('doctrine'); //optional - default: array
     }
 
     /*-------------------------------------------------------------------------------------

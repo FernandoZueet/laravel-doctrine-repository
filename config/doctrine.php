@@ -99,6 +99,7 @@ return [
         'updatedAtFieldName' => 'updatedAt',
         'indexNameResultsArray' => 'data',
         'indexNamePaginationArray' => 'meta',
+        'return' => 'array', //stdClass | array | doctrine
     ],
     //------------------------------------------------------------------------
     /*
@@ -163,16 +164,17 @@ return [
         'CONCAT_WS' => DoctrineExtensions\Query\Mysql\ConcatWs::class,
         'ROUND' => DoctrineExtensions\Query\Mysql\Round::class,
         'CAST' => DoctrineExtensions\Query\Mysql\Cast::class,
-        'JSON_OBJECT' => Syslogic\DoctrineJsonFunctions\Query\AST\Functions\Mysql\JsonObject::class,
-        'JSON_ARRAY' => Syslogic\DoctrineJsonFunctions\Query\AST\Functions\Mysql\JsonArray::class,
-        'JSON_QUOTE' => Syslogic\DoctrineJsonFunctions\Query\AST\Functions\Mysql\JsonQuote::class,
-        'JSON_UNQUOTE' => Syslogic\DoctrineJsonFunctions\Query\AST\Functions\Mysql\JsonUnquote::class,
-        'JSON_EXTRACT' => Syslogic\DoctrineJsonFunctions\Query\AST\Functions\Mysql\JsonExtract::class,
-        'JSON_REPLACE' => Syslogic\DoctrineJsonFunctions\Query\AST\Functions\Mysql\JsonReplace::class,
-        'JSON_INSERT' => Syslogic\DoctrineJsonFunctions\Query\AST\Functions\Mysql\JsonInsert::class,
-        'JSON_SET' => Syslogic\DoctrineJsonFunctions\Query\AST\Functions\Mysql\JsonSet::class,
-        'JSON_ARRAY_APPEND' => Syslogic\DoctrineJsonFunctions\Query\AST\Functions\Mysql\JsonArrayAppend::class,
-        'JSON_ARRAY_INSERT' => Syslogic\DoctrineJsonFunctions\Query\AST\Functions\Mysql\JsonArrayInsert::class,
+        'JSON_OBJECT' => Scienta\DoctrineJsonFunctions\Query\AST\Functions\Mysql\JsonObject::class,
+        'JSON_ARRAY' => Scienta\DoctrineJsonFunctions\Query\AST\Functions\Mysql\JsonArray::class,
+        'JSON_QUOTE' => Scienta\DoctrineJsonFunctions\Query\AST\Functions\Mysql\JsonQuote::class,
+        'JSON_UNQUOTE' => Scienta\DoctrineJsonFunctions\Query\AST\Functions\Mysql\JsonUnquote::class,
+        'JSON_EXTRACT' => Scienta\DoctrineJsonFunctions\Query\AST\Functions\Mysql\JsonExtract::class,
+        'JSON_REPLACE' => Scienta\DoctrineJsonFunctions\Query\AST\Functions\Mysql\JsonReplace::class,
+        'JSON_INSERT' => Scienta\DoctrineJsonFunctions\Query\AST\Functions\Mysql\JsonInsert::class,
+        'JSON_SET' => Scienta\DoctrineJsonFunctions\Query\AST\Functions\Mysql\JsonSet::class,
+        'JSON_ARRAY_APPEND' => Scienta\DoctrineJsonFunctions\Query\AST\Functions\Mysql\JsonArrayAppend::class,
+        'JSON_ARRAY_INSERT' => Scienta\DoctrineJsonFunctions\Query\AST\Functions\Mysql\JsonArrayInsert::class,
+        'JSON_CONTAINS' => Scienta\DoctrineJsonFunctions\Query\AST\Functions\Mysql\JsonContains::class,
     ],
     /*
     |--------------------------------------------------------------------------

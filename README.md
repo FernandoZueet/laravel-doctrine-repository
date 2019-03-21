@@ -169,6 +169,7 @@ class UserDocRepository extends DoctrineBaseRepository implements UserRepository
      */
     public function create(array $params): object
     {
+        //$this->setReturn('doctrine'); //optional - default: array
         return $this->setCreateArray([
             'fieldTest1',
             'fieldTest2:fk=classNameFk', //foreign key
@@ -186,6 +187,7 @@ class UserDocRepository extends DoctrineBaseRepository implements UserRepository
      */
     public function update(array $params, int $id): object
     {
+        //$this->setReturn('doctrine'); //optional - default: array
         return $this->setUpdateArray([
             'fieldTest1',
             'fieldTest2:fk=classNameFk', //foreign key
@@ -233,6 +235,8 @@ class UserDocRepository extends DoctrineBaseRepository implements UserRepository
         //set hidration (optional) - more information see the documentation.
         //$this->addHydrateObject(); 
         //$this->addCustomHydrationMode('ObjectAndScalarHydrator');
+
+        //$this->setReturn('doctrine'); //optional - default: array
     }
 
     /*-------------------------------------------------------------------------------------
@@ -640,6 +644,7 @@ file: `app/Repositories/User/UserDocRepository.php`
  */
 public function create(array $params): object
 {
+    //$this->setReturn('doctrine'); //optional - default: array
     return $this->setCreateArray([
         'firstName',
         'lastName',
@@ -661,6 +666,7 @@ Do not automatically inserted `createdAt`
  */
 public function create(array $params): object
 {
+    //$this->setReturn('doctrine'); //optional - default: array
     return $this->setCreateArray([
         'firstName',
         'lastName',
@@ -682,6 +688,8 @@ Dealing with the object of return:
  */
 public function create(array $params): object
 {
+    //$this->setReturn('doctrine'); //optional - default: array
+
     //Ex 1: The return object will return only the firstName and lastName fields
     return $this->setCreateArray([
         'firstName',
@@ -745,6 +753,7 @@ file: `app/Repositories/User/UserDocRepository.php`
  */
 public function update(array $params, int $id): object
 {
+    //$this->setReturn('doctrine'); //optional - default: array
     return $this->setUpdateArray([
         'firstName',
         'lastName',
@@ -767,6 +776,7 @@ Do not automatically update `updatedAt`
  */
 public function update(array $params, int $id): object
 {
+    //$this->setReturn('doctrine'); //optional - default: array
     return $this->setUpdateArray([
         'firstName',
         'lastName',
@@ -789,6 +799,8 @@ Dealing with the object of return:
  */
 public function update(array $params, int $id): object
 {
+    //$this->setReturn('doctrine'); //optional - default: array
+
     //Ex 1: The return object will return only the firstName and lastName fields
     return $this->setUpdateArray([
         'firstName',
@@ -1052,6 +1064,8 @@ public function selectAll()
     //$this->addHydrateSingleScalar(); 
     //$this->addCustomHydrationMode('ObjectAndScalarHydrator');
     //$this->addCustomHydrationMode('ArrayHydratorCustom');
+
+    //$this->setReturn('doctrine'); //optional - default: array
 }
 
 /*-------------------------------------------------------------------------------------
@@ -1366,6 +1380,8 @@ public function selectDql(array $params): object
     $this->createQueryDql("SELECT u FROM {$this->entityMain} AS u WHERE u.id = ?0"); //dql query
     $this->setParameterDql(0, $params['id']); //set parameter
     $this->paginatorDql($params['firstResult'], $params['maxResults']); //paginator
+
+    //$this->setReturn('doctrine'); //optional - default: array
 
     //result
     return $this->getResultDql(); 

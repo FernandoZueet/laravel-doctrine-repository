@@ -127,6 +127,28 @@ abstract class DoctrineBaseRepository
     private $configLdr = [];
 
     /**
+     * Return 
+     *
+     * @var string
+     */
+    protected $return = 'array';
+
+    /**
+     * Set return object
+     *
+     * @param string $return array | stdClass | doctrine
+     * @return void
+     */
+    protected function setReturn(string $return)
+    {
+        $perm = ['array', 'stdClass', 'doctrine'];
+        if (!in_array($return, $perm)) {
+            $return = 'doctrine';
+        }
+        $this->return = $return;
+    }
+
+    /**
      * Set hint null.
      *
      * @param bool $hintNull
@@ -223,8 +245,12 @@ abstract class DoctrineBaseRepository
                 'updatedAtFieldName' => 'updatedAt',
                 'indexNameResultsArray' => 'data',
                 'indexNamePaginationArray' => 'meta',
+                'return' => 'array'
             ]");
         }
+
+        //set return default
+        $this->setReturn(config('doctrine.LdrConfig.return')); 
     }
 
     /**
@@ -1778,9 +1804,16 @@ abstract class DoctrineBaseRepository
      */
     private function serializerNormalize($obj, array $atributes): object
     {
-        return json_decode(json_encode($this->serializer->normalize($obj, null, [
-            'attributes' => $atributes,
-        ])));
+        if ($this->return == 'array') {
+            return json_decode(json_encode($this->serializer->normalize($obj, null, [
+                'attributes' => $atributes,
+            ])), true);
+        }
+        if ($this->return == 'stdClass') {
+            return json_decode(json_encode($this->serializer->normalize($obj, null, [
+                'attributes' => $atributes,
+            ])));
+        }
     }
 
     /**
@@ -1797,7 +1830,12 @@ abstract class DoctrineBaseRepository
         $normalizer = $normalizer->setIgnoredAttributes($values);
         $this->instanceSerializer($normalizer);
 
-        return json_decode($this->serializer->serialize($obj, 'json'));
+        if ($this->return == 'array') {
+            return json_decode($this->serializer->serialize($obj, 'json'), true);
+        }
+        if ($this->return == 'stdClass') {
+            return json_decode($this->serializer->serialize($obj, 'json'));
+        }
     }
 
     /**
@@ -1820,7 +1858,15 @@ abstract class DoctrineBaseRepository
                 return $this->serializerIgnoreAttributes($obj, $values);
             }
         } else {
-            return json_decode($this->serializer->serialize($obj, 'json'));
+            if ($this->return == 'array') {
+                return json_decode($this->serializer->serialize($obj, 'json'), true);
+            }
+            if ($this->return == 'stdClass') {
+                return json_decode($this->serializer->serialize($obj, 'json'));
+            }
+            if ($this->return == 'doctrine') {
+                return $obj;
+            }
         }
     }
 }
