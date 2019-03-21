@@ -837,7 +837,7 @@ abstract class DoctrineBaseRepository
      *
      * @return object
      */
-    public function readQuery(string $typeTreat = '', array $treatObject = []): object
+    public function readQuery(string $typeTreat = '', array $treatObject = [])
     {
         //get query
         $query = $this->getQuery();
