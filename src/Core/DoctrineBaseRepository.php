@@ -852,7 +852,7 @@ abstract class DoctrineBaseRepository
         if (count($response) > 0) {
             $result[$this->configLdr['indexNameResultsArray']] = $response;
         } else {
-            return (object) [];
+            return [];
         }
 
         //add pagination
@@ -860,16 +860,11 @@ abstract class DoctrineBaseRepository
             $result = $this->responsePaginator($result);
         }
 
-        //treat object
-        if ($treatObject) {
-            return $this->treatObject($result, $typeTreat, $treatObject);
-        }
-
         //clear hydration
         $this->resultHydration = null;
 
-        //return result without treat object
-        return json_decode($this->serializer->serialize($result, 'json'));
+        //treat object
+        return $this->treatObject($result, $typeTreat, $treatObject);
     }
 
     /**
@@ -1802,7 +1797,7 @@ abstract class DoctrineBaseRepository
      *
      * @return object
      */
-    private function serializerNormalize($obj, array $atributes): object
+    private function serializerNormalize($obj, array $atributes)
     {
         if ($this->return == 'array') {
             return json_decode(json_encode($this->serializer->normalize($obj, null, [
@@ -1824,7 +1819,7 @@ abstract class DoctrineBaseRepository
      *
      * @return object
      */
-    private function serializerIgnoreAttributes($obj, array $values): object
+    private function serializerIgnoreAttributes($obj, array $values)
     {
         $normalizer = new ObjectNormalizer();
         $normalizer = $normalizer->setIgnoredAttributes($values);
@@ -1847,7 +1842,7 @@ abstract class DoctrineBaseRepository
      *
      * @return object
      */
-    protected function treatObject($obj, string $type, array $values): object
+    protected function treatObject($obj, string $type, array $values)
     {
         $perm = ['included', 'excluded'];
         if ($values && in_array($type, $perm)) {
